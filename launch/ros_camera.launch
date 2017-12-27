@@ -1,0 +1,29 @@
+<launch>
+  <node name="ros_camera" pkg="ros_camera" type="camera_node" output="screen" >
+    <param name="camera_name" value="mt9v034" />
+    <param name="camera_info_url" value="package://mtcamerdriver/config/${NAME}.yaml" />
+    <param name="camera_frame_id" value="camera" />
+  </node>
+       
+  <group ns="ros_camera/image" >
+    <rosparam param="disable_pub_plugins">
+      - 'image_transport/compressedDepth'
+      - 'image_transport/theora'
+    </rosparam>
+  </group>
+
+<!--
+  <node name="image_view" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/mtcamerdriver/image_raw"/>
+    <param name="autosize" value="true" />
+    <param name="image_transport" value="raw" />
+  </node>
+
+  <node name="image_view_compress" pkg="image_view" type="image_view" respawn="false" output="screen">
+    <remap from="image" to="/mtcamerdriver/image_raw"/>
+    <param name="autosize" value="true" />
+    <param name="image_transport" value="compressed" />
+  </node>
+-->
+
+</launch>
